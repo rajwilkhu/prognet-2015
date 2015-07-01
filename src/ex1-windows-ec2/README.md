@@ -4,4 +4,6 @@
 
 ## Creating a security group allowing WinRM access to the remote instance
 
-...`.\create-ec2-securitygroup -name <come up with a name>`
+```powershell
+.\create-ec2-securitygroup -name <come up with a name>
+```
