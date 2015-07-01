@@ -116,7 +116,7 @@ function Extract-CredentialsIntoFile
 
     Write-Verbose "Username: Administrator, Password: $password"
 
-    $outputCredentials = New-Object PSObject -Property @{ PublicDnsName=$publicDnsName; Username=$username; Password=$password }
+    $outputCredentials = New-Object PSObject -Property @{ PublicDnsName=$publicDnsName; Username="Administrator"; Password=$password }
     ($outputCredentials | Convertto-XML -NoTypeInformation).Save((Join-Path -Path $folder -ChildPath "$keyPairName.cxml"))
 
     return Create-CredentialObject -Username "Administrator" -Password $password
