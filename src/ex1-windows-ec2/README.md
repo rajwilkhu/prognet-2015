@@ -12,5 +12,12 @@
 
 ```powershell
 .\create-ec2-keypair.ps1 -name <your key pair name>
+```
 
-This script will generate an ec2 key pair and write a new pem file locally 
+This script will generate an ec2 key pair and write a new pem file locally
+
+## Create an EC2 instance
+
+```powershell
+.\create-ec2-instance.ps1 -name <your instance name> -keyPairName <your key pair name> -securityGroupName <your security group name>
+```
