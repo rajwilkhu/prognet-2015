@@ -1,6 +1,7 @@
 param([Parameter(Mandatory=$true)][string]$name,
       [Parameter(Mandatory=$true)][string]$keyPairName, 
       [Parameter(Mandatory=$true)][string]$securityGroupName)
+Import-Module "C:\Program Files (x86)\AWS Tools\PowerShell\AWSPowerShell\AWSPowerShell.psd1"
 
 function Wait-Task ([ScriptBlock] $cmd, [string] $message, [int] $retrySeconds)
 {
