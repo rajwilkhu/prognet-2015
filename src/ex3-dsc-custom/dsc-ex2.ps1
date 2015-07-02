@@ -2,8 +2,6 @@ configuration DscEx2
 {
     param ([string[]]$computerName = 'localhost')
 
-    Import-Module cWebFeaturesInstaller
-
     Node $computerName
     {
         File Just-Eat-Root { Type = "Directory"; DestinationPath = "C:\deployment"; Ensure = "Present"; }
@@ -12,6 +10,9 @@ configuration DscEx2
 
         Service Disable-WSUS { Name = "wuauserv"; State = "Stopped"; StartupType = "Disabled"; }
 
-        cWebFeaturesInstaller Install-Web-Features { }
+        WindowsFeature Web-AppInit { Ensure = 'Present'; Name = 'Web-AppInit' }
+        WindowsFeature Web-Asp-Net45 { Ensure = 'Present'; Name = 'Web-Asp-Net45' }
+        WindowsFeature Web-Server { Ensure = 'Present'; Name = 'Web-Server' }
+        WindowsFeature Web-WebSockets { Ensure = 'Present'; Name = 'Web-WebSockets' }
     }
 }
