@@ -10,9 +10,9 @@ We will start by setting up our environments for AWS and Azure (and Windows 10 i
 
 1. SetUp
 2. Creating an EC2 instance with Windows Server 2012 R2 with WinRM enabled
-3) Creating and executing a DSC configuration using built-in resources
-4) Creating a custom DSC resource using built-in resources
-5) Applying a DSC configuration to a EC2 LINUX instance
-6) DSC, Docker and LINUX
-7) DSC and Azure VMs
-8) Windows 10
+3. Creating and executing a DSC configuration using built-in resources
+4. Creating a custom DSC resource using built-in resources
+5. Applying a DSC configuration to a EC2 LINUX instance
+6. DSC, Docker and LINUX
+7. DSC and Azure VMs
+8. Windows 10
