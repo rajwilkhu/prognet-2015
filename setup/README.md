@@ -24,11 +24,20 @@ Ideally set up your credentials using Add-AzureAccount. Use Get-AzurePublishSett
 
 * If you have not got one already, create a new storage account for this session
 
+```powershell
 New-AzureStorageAccount -StorageAccountName "prognet" -Location "North Europe"
+```
 
+Once set up, you have to link the storage account to your azure subscription (i.e. make it current)
 
+```powershell
 Set-AzureSubscription -SubscriptionName "<Your subscription name>" -CurrentStorageAccountName (Get-AzureStorageAccount).Label -PassThru
+```
 
+You can verify your setup by executing the following commands:
 
+```powershell
 Get-AzureSubscription
 Get-AzureStorageAccount
+```
+You want to make sure that the CurrentStorageAccountName on the Azure Subscription matches the label on the storage account
