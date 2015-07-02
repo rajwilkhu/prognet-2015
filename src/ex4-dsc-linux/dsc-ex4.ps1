@@ -6,6 +6,14 @@ configuration DscEx4
 
     Node $computerName
     {
+        nxService ssh
+        { 
+             Name = "sshd"
+             Controller = "init" 
+             Enabled = "True" 
+             State = "Running" 
+        } 
+
         nxScript KeepDirEmpty
         {
             GetScript = @"
@@ -27,6 +35,24 @@ then
 else
     exit 0
 fi
+'@
+        }
+
+        nxScript AddFirewallRule 
+        {
+            SetScript = @'
+#!/bin/bash
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport http -j ACCEPT
+/etc/init.d/iptables save
+'@
+            TestScript = @'
+#!/bin/bash
+iptables -L | grep ^ACCEPT | grep "dpt:http "
+exit $?
+'@
+            GetScript = @'
+#!/bin/bash
+iptables -L | grep ^ACCEPT | grep "dpt:http "
 '@
         } 
     }
