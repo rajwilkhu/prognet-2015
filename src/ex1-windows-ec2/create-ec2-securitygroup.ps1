@@ -8,14 +8,24 @@ function New-SecurityGroup
           [string]$region = 'eu-west-1')
     Set-DefaultAWSRegion $region
 
-    $groupid = New-EC2SecurityGroup $name -Description $description -ProfileName 'prognet'
-    $publicIpAddress = (Invoke-WebRequest ifconfig.me/ip).Content.Trim()
+    $url = "http://checkip.dyndns.com" 
+    # Creating a new .Net Object names a System.Net.Webclient
+    $webclient = New-Object System.Net.WebClient
+    # In this new webdownlader object we are telling $webclient to download the
+    # url $url 
+    $Ip = $webclient.DownloadString($url)
+    # Just a simple text manuplation to get the ipadress form downloaded URL
+      # If you want to know what it contain try to see the variable $Ip
+    $Ip2 = $Ip.ToString()
+    $ip3 = $Ip2.Split(" ")
+    $ip4 = $ip3[5]
+    $ip5 = $ip4.replace("</body>","")
+    $publicIpAddress = $ip5.replace("</html>","").Trim()
     $ipRanges = @("$publicIpAddress/32")
-    $forwardedIpAddress = (Invoke-WebRequest ifconfig.me/forwarded).Content.Trim()
-    if ($forwardedIpAddress.length -gt 0)
-    {
-        $ipRanges = @("$publicIpAddress/32"; "$forwardedIpAddress/32")
-    }
+
+    Write-Host("Setting security group ip access to $ipRanges")
+    
+    $groupid = New-EC2SecurityGroup $name -Description $description -ProfileName 'prognet'
 
     Grant-EC2SecurityGroupIngress -GroupName $name -ProfileName 'prognet' `
                                   -IpPermissions @{IpProtocol = "icmp"; FromPort = -1; ToPort = -1; IpRanges = $ipRanges}
