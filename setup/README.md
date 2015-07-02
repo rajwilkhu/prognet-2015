@@ -25,3 +25,10 @@ Ideally set up your credentials using Add-AzureAccount. Use Get-AzurePublishSett
 * If you have not got one already, create a new storage account for this session
 
 New-AzureStorageAccount -StorageAccountName "prognet" -Location "North Europe"
+
+
+Set-AzureSubscription -SubscriptionName "<Your subscription name>" -CurrentStorageAccountName (Get-AzureStorageAccount).Label -PassThru
+
+
+Get-AzureSubscription
+Get-AzureStorageAccount
