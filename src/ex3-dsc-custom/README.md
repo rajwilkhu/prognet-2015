@@ -1,6 +1,14 @@
 # Powershell DSC using custom resources
 
-* Create a folder calls cWebFeaturesInstaller
+* Create a folder called cProgNet
+
+Navigate into this directory and execute the following command:
+
+```powershell
+New-ModuleManifest -Path cPrognet.psd1 -ModuleVersion "1.0.0.0" -Author <your name>
+``` 
+
+* Create a sub folder called cWebFeaturesInstaller
 
 By convention all custom resources start with the letter 'c' and all experimental resources start with the letter 'x'
 
@@ -28,7 +36,7 @@ This will generate a module manifest file. You can open up the file and tweak so
 * Remove the entries from original DSC configuration file and add the following line before Node
 
 ```powershell
-Import-Module cWebFeaturesInstaller
+Import-DscResource -Module cProgNet
 ```
 
 Add the following line to the original dsc-ex2.ps1 configuration file:
