@@ -8,6 +8,10 @@ Navigate into this directory and execute the following command:
 New-ModuleManifest -Path cPrognet.psd1 -ModuleVersion "1.0.0.0" -Author <your name>
 ``` 
 
+* Create a sub folder called DSCResources
+
+
+
 * Create a sub folder called cWebFeaturesInstaller
 
 By convention all custom resources start with the letter 'c' and all experimental resources start with the letter 'x'

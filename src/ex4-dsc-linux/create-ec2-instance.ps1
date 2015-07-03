@@ -193,6 +193,8 @@ echo 'P@33w0rd123!' | passwd --stdin root
     $publicDNSName = Test-Pingable -InstanceId $instanceid -Region $region
     $pingTime = Get-Date
 
+    Write-Output $publicDNSName
+
     $time = @{
         Running = $runningTime - $startTime
         Ping = $pingTime - $startTime
